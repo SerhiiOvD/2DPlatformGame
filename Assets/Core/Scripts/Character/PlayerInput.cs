@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
-
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private InputActionReference _moveInput;
@@ -30,13 +29,10 @@ public class PlayerInput : MonoBehaviour
     private void Attack(InputAction.CallbackContext callbackContext)
     {
         OnInputAttack?.Invoke();
-        Debug.Log("Button Attack Pressed");
     }
 
     private void Dash(InputAction.CallbackContext callbackContext)
     {
         OnInputDash?.Invoke();
-        Debug.Log("Dash");
-    }
-    
+    }   
 }

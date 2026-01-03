@@ -1,17 +1,27 @@
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {   
-    [SerializeField] private float _speed = 5f;
+    private const int SECOND_IN_MILLISECONDS = 1000;
+
+    [Header ("Movement")]
+    [SerializeField] private float _moveSpeed = 5f;
+
+    [Header ("Dashing")]
     [SerializeField] private float _dashForce = 10f;
-    [SerializeField] private int _dashingTime = 5;
-    [SerializeField] private int _dashingCooldown = 2;
+    
+    [Tooltip ("In milliseconds delay")][SerializeField] 
+    private int _dashingTime = 500;
+
+    [Tooltip ("In seconds delay")][SerializeField] 
+    private int _dashingCooldown = 2;
+
     private Vector2 _moveDirection;
     private bool _isDashing = false;
-    private bool _canDash = false;
+    private bool _canDash = true;
+
     private Player _player;
     private PlayerInput _playerInput;
 
@@ -41,17 +51,17 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if(!_isDashing)
-            _player.RigidBody.linearVelocity = new Vector2(_moveDirection.x * _speed, _moveDirection.y * _speed);
+            _player.RigidBody.linearVelocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
     }
 
     private async void DashHandler()
     {
-        if(_canDash)
-            Dash();
-
-        await Task.Delay(_dashingCooldown * 1000);
-        Debug.Log("Dash is ready to use.");
+        if(!_canDash) return;
+        
+        Dash();
+        await Task.Delay(_dashingCooldown * SECOND_IN_MILLISECONDS);
         _canDash = true;
+        Debug.Log("Dash is ready to use.");
     }
     private async void Dash()
     {
@@ -60,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         _player.TrailRenderer.emitting = true;
 
         _player.RigidBody.linearVelocity = new Vector2(_moveDirection.x * _dashForce, _moveDirection.y * _dashForce);
-        await Task.Delay(_dashingTime * 100);
+        await Task.Delay(_dashingTime);
 
         _player.TrailRenderer.emitting = false;
         _isDashing = false;
