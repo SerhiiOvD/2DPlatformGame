@@ -4,19 +4,19 @@ using Zenject;
 
 public class SceneInstaller : MonoInstaller
 {
+    //[SerializeField] private GameObject _playerPrefab;
     public override void InstallBindings()
     {
-        BindInputManager();
         BindPlayer();
     }
 
     private void BindInputManager()
     {
-        Container.Bind<InputManager>().AsSingle().OnInstantiated<InputManager>((c, i) => i.Enable());
     }
 
     private void BindPlayer()
     {
+        Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
         Container.Bind<PlayerInput>().FromComponentInHierarchy().AsSingle();
     }
 }
