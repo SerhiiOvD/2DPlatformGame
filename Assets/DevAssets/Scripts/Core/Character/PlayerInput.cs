@@ -15,14 +15,14 @@ namespace Core.Character
         public event Action OnInputAttack;
         public event Action OnInputDash;
 
-        private void OnEnable()
+        private void Awake()
         {
             _attackInput.action.started += Attack;
             _dashInput.action.started += Dash;
 
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _attackInput.action.started -= Attack;
             _dashInput.action.started -= Dash;

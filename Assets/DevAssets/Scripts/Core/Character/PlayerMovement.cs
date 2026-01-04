@@ -36,12 +36,12 @@ namespace Core.Character
             _playerInput = playerInput;
         }
 
-        private void OnEnable()
+        private void Awake()
         {
             _playerInput.OnInputDash += DashHandler;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _playerInput.OnInputDash -= DashHandler;
         }
