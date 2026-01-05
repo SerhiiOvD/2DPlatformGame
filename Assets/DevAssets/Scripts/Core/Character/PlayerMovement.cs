@@ -63,6 +63,7 @@ namespace Core.Character
             if (!_canDash) return;
 
             Dash();
+            _canDash = false;
             await Task.Delay(_dashingCooldown * SECOND_IN_MILLISECONDS);
             _canDash = true;
             Debug.Log("Dash is ready to use.");
@@ -70,7 +71,6 @@ namespace Core.Character
         private async void Dash()
         {
             _isDashing = true;
-            _canDash = false;
             _player.TrailRenderer.emitting = true;
 
             _player.RigidBody.linearVelocity = new Vector2(_moveDirection.x * _dashForce, _moveDirection.y * _dashForce);

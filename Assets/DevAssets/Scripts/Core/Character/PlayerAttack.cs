@@ -38,13 +38,13 @@ namespace Core.Character
             if (!_canAttack) return;
 
             Attack();
+            _canAttack = false;
             await Task.Delay(_cooldownAttack);
             _canAttack = true;
         }
 
         private void Attack()
         {
-            _canAttack = false;
             // Vector2 mousePos = Input.mousePosition; //TODO: add direction attack depands on mouse pos.
             var projectileObject = _projectilePool.GetPooledProjectile();
 
