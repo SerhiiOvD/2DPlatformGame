@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 using Core.Projectile;
+using Core.Character.Aim;
 
 namespace Core.Character
 {
@@ -15,12 +16,14 @@ namespace Core.Character
 
         private ProjectilePool _projectilePool;
         private PlayerInput _playerInput;
+        private AimController _aimController;
 
         [Inject]
-        public void Construct(PlayerInput playerInput, ProjectilePool projectilePooling)
+        public void Construct(PlayerInput playerInput, ProjectilePool projectilePooling, AimController aimController)
         {
             _playerInput = playerInput;
             _projectilePool = projectilePooling;
+            _aimController = aimController;
         }
 
         private void Awake()
@@ -45,14 +48,15 @@ namespace Core.Character
 
         private void Attack()
         {
-            // Vector2 mousePos = Input.mousePosition; //TODO: add direction attack depands on mouse pos.
             var projectileObject = _projectilePool.GetPooledProjectile();
 
             if (projectileObject == null) return;
 
-            projectileObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
-            projectileObject.RigidBody.AddForce(projectileObject.transform.up * _projectileForce, ForceMode2D.Impulse);
+            projectileObject.transform.SetPositionAndRotation(gameObject.transform.position, _aimController.AimPoint.rotation);
             
+            var directionFire = (_aimController.AimPoint.position - transform.position).normalized;
+            projectileObject.RigidBody.linearVelocity = directionFire * _projectileForce;
+
             projectileObject.Deactivate();
         }
     }

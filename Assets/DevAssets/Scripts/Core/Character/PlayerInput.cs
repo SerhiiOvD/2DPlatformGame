@@ -9,8 +9,10 @@ namespace Core.Character
         [SerializeField] private InputActionReference _moveInput;
         [SerializeField] private InputActionReference _attackInput;
         [SerializeField] private InputActionReference _dashInput;
+        [SerializeField] private InputActionReference _mousePosition;
 
         public InputActionReference MoveInput => _moveInput;
+        public InputActionReference MousePosition => _mousePosition;
 
         public event Action OnInputAttack;
         public event Action OnInputDash;
@@ -37,5 +39,9 @@ namespace Core.Character
         {
             OnInputDash?.Invoke();
         }
+
+        public Vector2 GetMoveInputPos() => _moveInput.action.ReadValue<Vector2>();
+        
+        public Vector2 GetMousePos() => _mousePosition.action.ReadValue<Vector2>();
     }
 }
