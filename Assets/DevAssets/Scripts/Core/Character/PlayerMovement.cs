@@ -49,7 +49,7 @@ namespace Core.Character
         private void Update()
         {
             if (!_isDashing)
-                _moveDirection = _playerInput.MoveInput.action.ReadValue<Vector2>();
+                _moveDirection = _playerInput.GetMoveInputPos();
         }
 
         private void FixedUpdate()

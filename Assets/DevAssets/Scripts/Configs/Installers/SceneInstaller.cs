@@ -1,6 +1,8 @@
 using Zenject;
 using Core.Character;
+using Core.Character.Aim;
 using Core.Projectile;
+
 
 namespace Configs.Installers
 {
@@ -10,6 +12,8 @@ namespace Configs.Installers
         {
             BindPlayer();
             BindProjectile();
+
+            Container.Bind<AimController>().FromComponentInHierarchy().AsSingle();
         }
         private void BindPlayer()
         {

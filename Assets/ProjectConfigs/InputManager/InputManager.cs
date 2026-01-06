@@ -161,7 +161,7 @@ namespace Core.InputManager
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -170,7 +170,7 @@ namespace Core.InputManager
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -323,7 +323,7 @@ namespace Core.InputManager
                 {
                     ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse;Touch"",
