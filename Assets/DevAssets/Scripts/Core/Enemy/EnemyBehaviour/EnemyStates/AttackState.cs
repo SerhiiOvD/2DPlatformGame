@@ -23,7 +23,6 @@ public class AttackState : IState
             _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.IdleState);
 
         _enemy.Attack();
-        Debug.Log(_enemy.RigidBody.linearVelocity);
     }
 
     public void Exit()

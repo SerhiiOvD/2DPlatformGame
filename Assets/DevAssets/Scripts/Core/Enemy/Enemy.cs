@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
     public void Idle()
     {
-        Debug.Log("Play Idle anim");
+        // Debug.Log("Play Idle anim");
     }
 
     public void ChaseThePlayer()
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Enemy Attack!");
+        // Debug.Log("Enemy Attack!");
     }
 
     public bool IsPlayerActive() => _player.isActiveAndEnabled;
