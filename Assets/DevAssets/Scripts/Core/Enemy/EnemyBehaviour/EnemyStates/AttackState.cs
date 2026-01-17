@@ -22,7 +22,7 @@ public class AttackState : IState
         if (!_enemy.IsPlayerActive())
             _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.IdleState);
 
-        _enemy.Attack();
+        _enemy.AttackSequance();
     }
 
     public void Exit()

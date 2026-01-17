@@ -1,18 +1,19 @@
-using System.Threading.Tasks;
+using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Troll : Enemy
 {
-    public override void Attack()
+    private const string ANIMATION_ATTACK_PARAMETER = "Attack";
+
+    [SerializeField] private Animator _animator;
+
+    private void OnValidate()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    private async void AttackSequance()
+    protected override void Attack()
     {
-        if(!_canAttack) return;
-        
-        _canAttack = false;
-        await Task.Delay(_attackSequance * 1000);
-        _canAttack = true;
+        _animator.SetTrigger(ANIMATION_ATTACK_PARAMETER);
     }
 }
