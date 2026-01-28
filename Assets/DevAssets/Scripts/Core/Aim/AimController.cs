@@ -1,8 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
+using DevAssets.Core.Characters.Player;
 
-namespace Core.Character.Aim
+namespace DevAssets.Controllers
 {
     public class AimController : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Character
+namespace DevAssets.Core.Characters.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
