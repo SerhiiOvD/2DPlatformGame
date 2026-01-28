@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
-namespace Core.Character
+namespace DevAssets.Core.Characters.Player
 {
     public class PlayerInput : MonoBehaviour
     {

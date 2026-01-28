@@ -28,7 +28,6 @@
   <Project Path="Unity.InputSystem.csproj" />
   <Project Path="Zenject-ReflectionBaking-Editor.csproj" />
   <Project Path="PPv2URPConverters.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.2D.Animation.Editor.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
   <Project Path="Unity.2D.SpriteShape.Runtime.csproj" />
@@ -38,6 +37,7 @@
   <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Zenject-IntegrationTests.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />

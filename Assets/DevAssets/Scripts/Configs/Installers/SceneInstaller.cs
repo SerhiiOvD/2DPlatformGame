@@ -1,8 +1,10 @@
 using Zenject;
-using Core.Character;
-using Core.Character.Aim;
+using DevAssets.Core.Characters.Player;
+using DevAssets.Characters.Enemies;
+using DevAssets.Controllers;
 using Core.Projectile;
 using UnityEngine;
+using DevAssets.Interfaces;
 
 
 namespace Configs.Installers
@@ -23,6 +25,7 @@ namespace Configs.Installers
         {
             Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerInput>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ITarget>().To<Player>().FromComponentInHierarchy().AsCached();
         }
 
         private void BindEnemy()

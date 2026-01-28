@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 using Core.Projectile;
-using Core.Character.Aim;
+using DevAssets.Controllers;
 
-namespace Core.Character
+namespace DevAssets.Core.Characters.Player
 {
     public class PlayerAttack : MonoBehaviour
     {

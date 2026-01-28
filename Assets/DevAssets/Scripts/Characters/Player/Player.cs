@@ -1,9 +1,10 @@
 using UnityEngine;
+using DevAssets.Interfaces;
 
-namespace Core.Character
+namespace DevAssets.Core.Characters.Player
 {
     [RequireComponent(typeof(PlayerMovement), typeof(PlayerInput))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, ITarget
     {
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerInput _playerInput;
@@ -14,6 +15,9 @@ namespace Core.Character
 
         public Rigidbody2D RigidBody => _rigidBody;
         public TrailRenderer TrailRenderer => _trailRenderer;
+        
+        public Transform Transform => transform;
+        public bool IsActive => gameObject.activeSelf;
 
         private void OnValidate()
         {
