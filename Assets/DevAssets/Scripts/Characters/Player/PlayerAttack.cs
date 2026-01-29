@@ -8,20 +8,19 @@ namespace DevAssets.Core.Characters.Player
 {
     public class PlayerAttack : MonoBehaviour
     {
+        [SerializeField] private ProjectilePool _playerProjectilePool;
         [SerializeField] private int _projectileForce = 10;
 
         [SerializeField] private float _timeBetweenAttacks = 1;
         private float _lastTimeAttack;
 
-        private ProjectilePool _projectilePool;
         private PlayerInput _playerInput;
         private AimController _aimController;
 
         [Inject]
-        public void Construct(PlayerInput playerInput, ProjectilePool projectilePooling, AimController aimController)
+        public void Construct(PlayerInput playerInput, AimController aimController)
         {
             _playerInput = playerInput;
-            _projectilePool = projectilePooling;
             _aimController = aimController;
         }
 
@@ -46,7 +45,7 @@ namespace DevAssets.Core.Characters.Player
 
         private void Attack()
         {
-            var projectileObject = _projectilePool.GetPooledProjectile();
+            var projectileObject = _playerProjectilePool.GetPooledProjectile();
 
             if (projectileObject == null) return;
 
