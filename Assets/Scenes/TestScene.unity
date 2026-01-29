@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dragon (Enemy)
       objectReference: {fileID: 0}
+    - target: {fileID: 2982876278215941575, guid: db6e5277643294c438b9f52e1e746d58, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5497396026456086723, guid: db6e5277643294c438b9f52e1e746d58, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -948,6 +952,22 @@ PrefabInstance:
       propertyPath: _mousePosition
       value: 
       objectReference: {fileID: 373290509}
+    - target: {fileID: 1766642362800464852, guid: 05c99e39b9d89a647aef5e8594472779, type: 3}
+      propertyPath: _cooldownAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766642362800464852, guid: 05c99e39b9d89a647aef5e8594472779, type: 3}
+      propertyPath: _projectileForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766642362800464852, guid: 05c99e39b9d89a647aef5e8594472779, type: 3}
+      propertyPath: _timeBetweenAttacks
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766642362800464852, guid: 05c99e39b9d89a647aef5e8594472779, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::DevAssets.Core.Characters.Player.PlayerAttack
+      objectReference: {fileID: 0}
     - target: {fileID: 3167046225244491087, guid: 05c99e39b9d89a647aef5e8594472779, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1035,6 +1055,10 @@ PrefabInstance:
     - target: {fileID: 4880118424688771652, guid: c8367a91250d61d4e9cebd01f4f6b43c, type: 3}
       propertyPath: m_Name
       value: Troll (Enemy)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880118424688771652, guid: c8367a91250d61d4e9cebd01f4f6b43c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5590609051054265586, guid: c8367a91250d61d4e9cebd01f4f6b43c, type: 3}
       propertyPath: m_BodyType

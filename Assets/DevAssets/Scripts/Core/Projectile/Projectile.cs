@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
+using DevAssets.Characters.Enemies;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
 
 namespace Core.Projectile
 {
@@ -12,6 +14,7 @@ namespace Core.Projectile
 
         private IObjectPool<Projectile> _objectPool;
         private Rigidbody2D _rigidBody2D;
+        [Inject] private Enemy _enemy;
 
         public IObjectPool<Projectile> ObjectPool { set => _objectPool = value; }
         public Rigidbody2D RigidBody => _rigidBody2D;
@@ -20,6 +23,16 @@ namespace Core.Projectile
         {
             _rigidBody2D = GetComponent<Rigidbody2D>();
         }
+
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.gameObject.CompareTag("Enemy"))
+            {
+                collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
+                enemy.Death();
+            }
+        }
+
         public async void Deactivate()
         {
             await Task.Delay(_timeToDeactivate * SECOND_IN_MILLISECONDS);

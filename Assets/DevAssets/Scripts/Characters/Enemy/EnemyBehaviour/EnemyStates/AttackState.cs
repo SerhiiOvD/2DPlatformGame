@@ -22,7 +22,7 @@ namespace DevAssets.Characters.Enemies.EnemyStates
                 _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.WalkState);
 
             if (!_enemy.IsPlayerActive())
-                _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.IdleState);
+                _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.NeutralState);
 
             _enemy.AttackSequance();
         }

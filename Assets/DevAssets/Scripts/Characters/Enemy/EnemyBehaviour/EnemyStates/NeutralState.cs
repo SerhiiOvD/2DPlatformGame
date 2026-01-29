@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace DevAssets.Characters.Enemies.EnemyStates
 {
-    public class DeathState : IState
+    public class NeutralState : IState
     {
         private readonly Enemy _enemy;
 
-        public DeathState(Enemy enemy)
+        public NeutralState(Enemy enemy)
         {
             _enemy = enemy;
         }
@@ -15,12 +15,15 @@ namespace DevAssets.Characters.Enemies.EnemyStates
         {
             _enemy.RigidBody.linearVelocity = Vector2.zero;
 
-            _enemy.Death();
         }
 
         public void Execute()
         {
-            
+            if (_enemy.IsPlayerActive())
+                _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.WalkState);
+
+            if (_enemy.IsDistanceToAttack())
+                _enemy.EnemyStateMachine.TransitionTo(_enemy.EnemyStateMachine.AttackState);
         }
 
         public void Exit()

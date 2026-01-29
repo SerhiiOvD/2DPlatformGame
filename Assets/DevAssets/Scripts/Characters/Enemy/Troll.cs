@@ -5,9 +5,9 @@ namespace DevAssets.Characters.Enemies
     [RequireComponent(typeof(Animator))]
     public class Troll : Enemy
     {
-        private const string ANIMATION_ATTACK_PARAMETER = "Attack";
+        private const string ATTACK_PARAMETER = "Attack";
 
-        [SerializeField] private Animator _animator;
+        private Animator _animator;
 
         private void OnValidate()
         {
@@ -16,7 +16,7 @@ namespace DevAssets.Characters.Enemies
 
         protected override void Attack()
         {
-            _animator.SetTrigger(ANIMATION_ATTACK_PARAMETER);
+            _animator.SetTrigger(ATTACK_PARAMETER);
         }
     }
 }

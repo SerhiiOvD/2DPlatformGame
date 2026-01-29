@@ -10,9 +10,8 @@ namespace DevAssets.Core.Characters.Player
     {
         [SerializeField] private int _projectileForce = 10;
 
-        [Tooltip ("In milliseconds")]
-        [SerializeField] private int _cooldownAttack = 500;
-        private bool _canAttack = true;
+        [SerializeField] private float _timeBetweenAttacks = 1;
+        private float _lastTimeAttack;
 
         private ProjectilePool _projectilePool;
         private PlayerInput _playerInput;
@@ -36,14 +35,13 @@ namespace DevAssets.Core.Characters.Player
             _playerInput.OnInputAttack -= AttackHandler;
         }
 
-        private async void AttackHandler()
+        private void AttackHandler()
         {
-            if (!_canAttack) return;
-
-            Attack();
-            _canAttack = false;
-            await Task.Delay(_cooldownAttack);
-            _canAttack = true;
+            if (Time.time - _lastTimeAttack >= _timeBetweenAttacks)
+            {
+                _lastTimeAttack = Time.time;
+                Attack();
+            }
         }
 
         private void Attack()
@@ -53,10 +51,9 @@ namespace DevAssets.Core.Characters.Player
             if (projectileObject == null) return;
 
             projectileObject.transform.SetPositionAndRotation(gameObject.transform.position, _aimController.AimPoint.rotation);
-            
+
             var directionFire = (_aimController.AimPoint.position - transform.position).normalized;
             projectileObject.RigidBody.linearVelocity = directionFire * _projectileForce;
-
             projectileObject.Deactivate();
         }
     }
