@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using DevAssets.Interfaces;
 using UnityEngine;
 using Zenject;
@@ -16,14 +15,14 @@ namespace DevAssets.Characters.Enemies
 
         [SerializeField] protected float _walkSpeed = 5f;
         [SerializeField] protected float _rangeAttack = 5f;
-        [Tooltip("In seconds.")][SerializeField] protected int _attackSequance = 1;
+        [SerializeField] protected float _timeBetweenAttacks = 2f;
 
-        protected bool _canAttack = true;
+        protected float _lastTimeAttack;
 
         public Rigidbody2D RigidBody => _rigidBody;
         public EnemyStateMachine EnemyStateMachine => _enemyStateMachine;
-        
-        public event Action OnEnemyDie;
+
+        public event Action OnEnemyDeath;
 
         [Inject] protected readonly ITarget _target;
 
@@ -37,7 +36,7 @@ namespace DevAssets.Characters.Enemies
         {
             _enemyStateMachine = new EnemyStateMachine(this);
 
-            EnemyStateMachine.Initialize(EnemyStateMachine.IdleState);
+            EnemyStateMachine.Initialize(EnemyStateMachine.NeutralState);
         }
 
         protected virtual void Update()
@@ -45,20 +44,20 @@ namespace DevAssets.Characters.Enemies
             EnemyStateMachine.Update();
         }
 
-        public async void AttackSequance()
+        public void AttackSequance()
         {
-            if (!_canAttack) return;
-
-            Attack();
-            _canAttack = false;
-            await Task.Delay(_attackSequance * 1000);
-            _canAttack = true;
+            if (Time.time - _lastTimeAttack >= _timeBetweenAttacks)
+            {
+                _lastTimeAttack = Time.time;
+                Attack();
+            }
         }
 
         protected abstract void Attack();
         public virtual void Death()
         {
-            OnEnemyDie?.Invoke();
+            OnEnemyDeath?.Invoke();
+            gameObject.SetActive(false);
         }
         public virtual void ChaseTheTarget()
         {

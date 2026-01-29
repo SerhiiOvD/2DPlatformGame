@@ -8,11 +8,11 @@ namespace DevAssets.Characters.Enemies
     {
         public IState CurrentState { get; private set; }
 
-        private readonly DeathState _deathState;
+        private readonly NeutralState _neutralState;
         private readonly WalkState _walkState;
         private readonly AttackState _attackState;
 
-        public DeathState IdleState => _deathState;
+        public NeutralState NeutralState => _neutralState;
         public WalkState WalkState => _walkState;
         public AttackState AttackState => _attackState;
 
@@ -20,7 +20,7 @@ namespace DevAssets.Characters.Enemies
 
         public EnemyStateMachine(Enemy enemy)
         {
-            _deathState = new DeathState(enemy);
+            _neutralState = new NeutralState(enemy);
             _walkState = new WalkState(enemy);
             _attackState = new AttackState(enemy);
         }
